@@ -4,32 +4,27 @@ using UnityEngine;
  
 public class PlayerController : MonoBehaviour
 {
-  private PlayerInputActions playerInput;
+  // private PlayerInputActions playerInput;
   private Rigidbody2D rb;
-  private float speed = 10f;
+  public float moveSpeed = 8f;
   private Camera cam;
+  private Vector2 moveDirection;
  
    void Awake()
    {
-       playerInput = new PlayerInputActions();
+      //  playerInput = new PlayerInputActions();
        rb = GetComponent<Rigidbody2D>();
        cam = Camera.main;
    }
 
-   private void OnEnable()
+   void Update()
    {
-     playerInput.Enable();  
-   }
-
-   private void OnDisable()
-   {
-       playerInput.Disable();
+     ProcessInputs();
    }
 
    void FixedUpdate()
    {
-       Vector2 moveInput = playerInput.Movement.Move.ReadValue<Vector2>();
-       rb.velocity = moveInput * speed;
+      Move();
 
       // LookAtMouse
        Vector3 mouse = Input.mousePosition;
@@ -38,4 +33,17 @@ public class PlayerController : MonoBehaviour
        float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
        transform.rotation = Quaternion.Euler(0f,0f, angle);
    }
+
+   void Move() 
+    {
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+    }
+
+   void ProcessInputs() 
+    {
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        moveDirection = new Vector2(moveX, moveY).normalized;
+    }
 }
