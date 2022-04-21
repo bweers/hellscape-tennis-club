@@ -11,11 +11,16 @@ public class PlayerController : MonoBehaviour
   private Vector2 moveDirection;
   private int charge, maxCharge = 100;
   private bool leftMouseDown;
+  public int maxHealth = 10;
+  public int currentHealth;
+  public HealthBar healthBar;
  
-    private void Start()
+    void Start()
     {
         StartCoroutine(ChargeTimer());
         GameObject ballSpawnPointObject = GameObject.Find("BallSpawnPoint");
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     
    void Awake()
@@ -27,6 +32,12 @@ public class PlayerController : MonoBehaviour
    void Update()
    {
         ProcessInputs();
+
+        // Test Player taking damage
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(2);
+        }
    }
 
    void FixedUpdate()
@@ -91,5 +102,11 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("ball spawned");
         
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }
