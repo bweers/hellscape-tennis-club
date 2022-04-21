@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
   private int charge, maxCharge = 100;
   private bool leftMouseDown;
  
-    private void Start()
+    void Start()
     {
         StartCoroutine(ChargeTimer());
         GameObject ballSpawnPointObject = GameObject.Find("BallSpawnPoint");
