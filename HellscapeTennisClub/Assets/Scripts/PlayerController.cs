@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ 
 public class PlayerController : MonoBehaviour
 {
   private Rigidbody2D rb;
   private Camera cam;
-  public GameObject tennisBallPrefab, ballSpawnPointObject;
-  public float moveSpeed = 8f;
-  private float timer = 0f;
-  public float chargeDelay = .01f;
+  private float moveSpeed = 8f, timer = 0f;
+  public float chargeDelay = .1f;
   private Vector2 moveDirection;
-  private int charge, maxCharge = 50;
+  private int charge, maxCharge = 100;
   private bool leftMouseDown;
  
     void Start()
     {
         StartCoroutine(ChargeTimer());
+        GameObject ballSpawnPointObject = GameObject.Find("BallSpawnPoint");
     }
     
    void Awake()
@@ -59,7 +58,7 @@ public class PlayerController : MonoBehaviour
                     charge = maxCharge;
                 }
                 else {
-                    charge += 5;
+                    charge++;
                 }
                 Debug.Log(charge);
              }
@@ -91,10 +90,6 @@ public class PlayerController : MonoBehaviour
     void SpawnTennisBall()
     {
         Debug.Log("ball spawned");
-        GameObject spawnedBall = Instantiate(tennisBallPrefab, ballSpawnPointObject.transform.position, Quaternion.identity);
-        Rigidbody2D rb = spawnedBall.GetComponent<Rigidbody2D>();
-        Vector3 direction = ballSpawnPointObject.transform.TransformDirection(Vector3.right);
-        rb.velocity = new Vector2( direction.x * charge, direction.y * charge );
-        Debug.Log(direction);
+        
     }
 }
