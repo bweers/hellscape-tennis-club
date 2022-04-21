@@ -452,6 +452,7 @@ GameObject:
   - component: {fileID: 863676866}
   - component: {fileID: 863676865}
   - component: {fileID: 863676869}
+  - component: {fileID: 863676870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -493,9 +494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeDelay: 0.1
-  maxHealth: 10
-  currentHealth: 10
-  healthBar: {fileID: 2010095905}
 --- !u!212 &863676867
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -577,6 +575,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.64, y: 0.64}
   m_Direction: 0
+--- !u!114 &863676870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863676864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5287c23f00e4e41b8bdcea3038f1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  currentHealth: 0
+  healthBar: {fileID: 2010095905}
 --- !u!1 &1793720338
 GameObject:
   m_ObjectHideFlags: 0
