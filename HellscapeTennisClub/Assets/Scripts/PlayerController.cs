@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
   private Rigidbody2D rb;
   private Camera cam;
   public GameObject tennisBallPrefab, ballSpawnPointObject;
-  private float moveSpeed = 6f, timer = 0f;
+  private float moveSpeed = 4.5f, timer = 0f;
   public float chargeDelay;
   private Vector2 moveDirection;
   private int charge, maxCharge = 50;
