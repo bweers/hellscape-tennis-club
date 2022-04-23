@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
   private float moveSpeed = 4.5f, timer = 0f;
   public float chargeDelay;
   private Vector2 moveDirection;
-  private int charge, maxCharge = 50;
+  private int charge, maxCharge = 30;
   private bool leftMouseDown;
  
     void Start()
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 else {
                     charge++;
                 }
-                Debug.Log(charge);
+                // Debug.Log(charge);
              }
              else if (charge > 0)
              {
