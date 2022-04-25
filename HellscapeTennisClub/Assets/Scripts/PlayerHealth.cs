@@ -24,6 +24,15 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
+        {
+            GameOver();
+        }
+    }
+    void GameOver()
+    {
+        Destroy(gameObject);
+        
     }
 }
 // Brackys tutorial: https://www.youtube.com/watch?v=BLfNP4Sc_iA&t=607s
