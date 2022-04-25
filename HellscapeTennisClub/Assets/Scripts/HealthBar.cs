@@ -19,3 +19,4 @@ public class HealthBar : MonoBehaviour
     }
 
 }
+// Brackys tutorial: https://www.youtube.com/watch?v=BLfNP4Sc_iA&t=607s
