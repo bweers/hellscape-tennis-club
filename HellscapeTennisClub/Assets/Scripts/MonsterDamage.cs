@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class MonsterDamage : MonoBehaviour
 {
+    public int damageAmount = 2;
+
     private void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Player") {
             GameObject Player = GameObject.Find("Player");
             PlayerHealth PlayerHealth = Player.GetComponent<PlayerHealth>();
-            PlayerHealth.TakeDamage(2);
+            PlayerHealth.TakeDamage(damageAmount);
             Debug.Log("Player Damaged");
         }
     }
