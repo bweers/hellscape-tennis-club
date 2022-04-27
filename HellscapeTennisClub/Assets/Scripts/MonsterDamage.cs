@@ -10,7 +10,6 @@ public class MonsterDamage : MonoBehaviour
         if (col.gameObject.tag == "Player") {
             GameObject Player = GameObject.Find("Player");
             PlayerHealth PlayerHealth = Player.GetComponent<PlayerHealth>();
-
             PlayerHealth.TakeDamage(damageAmount);
             Debug.Log("Player Damaged");
         }
