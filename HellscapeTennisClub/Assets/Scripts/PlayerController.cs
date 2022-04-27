@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
   private float moveSpeed = 4.5f, timer = 0f;
   public float chargeDelay;
   private Vector2 moveDirection;
-  private int charge, maxCharge = 30;
+  public int charge, maxCharge = 30;
   private bool leftMouseDown;
  
     void Start()
