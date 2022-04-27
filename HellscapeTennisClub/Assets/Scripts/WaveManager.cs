@@ -5,13 +5,16 @@ using UnityEngine;
 public class WaveManager : MonoBehaviour
 {
 
-    private int waveNumber = 1;
+    private int waveNumber = 3;
     private bool roundStarted = false;
     private Transform spawnPoint, spawnpoint1, spawnpoint2;
     private int aliveMonsters = 0;
 
     public GameObject monsterPrefab;
     private Transform target;
+
+    public Sprite medMonsterSprite;
+    public Sprite heavyMonsterSprite;
 
 
     // Start is called before the first frame update
@@ -82,10 +85,12 @@ public class WaveManager : MonoBehaviour
             Debug.Log("waveNumber Error");
         }
 
-        StartCoroutine("lightSpawn", numOfLight);
+        StartCoroutine("LightSpawn", numOfLight);
+        StartCoroutine("MedSpawn", numOfMed);
+        StartCoroutine("HeavySpawn", numOfHeavy);
     }
 
-    IEnumerator lightSpawn(int numOfLight)
+    IEnumerator LightSpawn(int numOfLight)
     {
         while (numOfLight > 0)
         {
@@ -95,13 +100,83 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
+            aiScript.speed = 750f;
+
+            //Setting Monster Attack Damage
+            MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
+            damageScript.damageAmount = 2;
+
+            //Setting Monster Health and Resilience
+            MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
+            healthScript.health = 75;
+            healthScript.baseDamageTaken = 35;
 
             numOfLight--;
             yield return new WaitForSecondsRealtime(2);
         }
     }
 
-    void ChooseSpawnPoint() 
+    IEnumerator MedSpawn(int numOfMed)
+    {
+        while (numOfMed > 0)
+        {
+            ChooseSpawnPoint();
+            GameObject monsterSpawn = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+
+            //Setting Monster target
+            AIController aiScript = monsterSpawn.GetComponent<AIController>();
+            aiScript.target = target;
+            aiScript.speed = 650f;
+
+            //Setting Monster Attack Damage
+            MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
+            damageScript.damageAmount = 3;
+
+            //Setting Monster Health and Resilience
+            MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
+            healthScript.health = 125;
+            healthScript.baseDamageTaken = 35;
+
+            //Setting Monster Sprite
+            SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = medMonsterSprite;
+
+            numOfMed--;
+            yield return new WaitForSecondsRealtime(4);
+        }
+    }
+
+    IEnumerator HeavySpawn(int numOfHeavy)
+    {
+        while (numOfHeavy > 0)
+        {
+            ChooseSpawnPoint();
+            GameObject monsterSpawn = Instantiate(monsterPrefab, spawnPoint.position, Quaternion.identity);
+
+            //Setting Monster target
+            AIController aiScript = monsterSpawn.GetComponent<AIController>();
+            aiScript.target = target;
+            aiScript.speed = 550f;
+
+            //Setting Monster Attack Damage
+            MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
+            damageScript.damageAmount = 4;
+
+            //Setting Monster Health and Resilience
+            MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
+            healthScript.health = 160;
+            healthScript.baseDamageTaken = 35;
+
+            //Setting Monster Sprite
+            SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = heavyMonsterSprite;
+
+            numOfHeavy--;
+            yield return new WaitForSecondsRealtime(8);
+        }
+    }
+
+    void ChooseSpawnPoint()
     {
         int spawnSelection = Random.Range(0,2);
             Debug.Log(spawnSelection);
