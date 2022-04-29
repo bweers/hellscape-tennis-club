@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-
-    private int waveNumber = 3;
+    private int waveNumber = 1;
     private bool roundStarted = false;
     private Transform spawnPoint, spawnpoint1, spawnpoint2;
     private int aliveMonsters = 0;
 
     public GameObject monsterPrefab;
+    public GameObject bloodParticleSys;
     private Transform target;
 
     public Sprite medMonsterSprite;
@@ -56,29 +56,29 @@ public class WaveManager : MonoBehaviour
         if (waveNumber == 1)
         {
             Debug.Log("Wave 1 Started");
-            numOfLight = 8;
-            numOfMed = 0;
+            numOfLight = 12;
+            numOfMed = 1;
             numOfHeavy = 0;
         }
         else if (waveNumber == 2)
         {
             Debug.Log("Wave 2 Started");
-            numOfLight = 10;
-            numOfMed = 5;
-            numOfHeavy = 0;
+            numOfLight = 20;
+            numOfMed = 9;
+            numOfHeavy = 1;
 
         }
         else if (waveNumber == 3)
         {
             Debug.Log("Wave 3 Started");
-            numOfLight = 10;
-            numOfMed = 8;
-            numOfHeavy = 2;
+            numOfLight = 20;
+            numOfMed = 15;
+            numOfHeavy = 4;
 
         }
         else if (waveNumber >= 4)
         {
-
+            //ENTER WINNING FX OR OTHER SCRIPTS HERE
         }
         else
         {
@@ -100,7 +100,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 750f;
+            aiScript.speed = 620f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -108,11 +108,12 @@ public class WaveManager : MonoBehaviour
 
             //Setting Monster Health and Resilience
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
-            healthScript.health = 75;
+            healthScript.health = 50;
             healthScript.baseDamageTaken = 35;
+            healthScript.bloodParticleSys = bloodParticleSys;
 
             numOfLight--;
-            yield return new WaitForSecondsRealtime(2);
+            yield return new WaitForSecondsRealtime(Random.Range(1.5f, 3.5f));
         }
     }
 
@@ -126,7 +127,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 650f;
+            aiScript.speed = 550f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -134,15 +135,16 @@ public class WaveManager : MonoBehaviour
 
             //Setting Monster Health and Resilience
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
-            healthScript.health = 125;
+            healthScript.health = 75;
             healthScript.baseDamageTaken = 35;
+            healthScript.bloodParticleSys = bloodParticleSys;
 
             //Setting Monster Sprite
             SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
             spriteRenderer.sprite = medMonsterSprite;
 
             numOfMed--;
-            yield return new WaitForSecondsRealtime(4);
+            yield return new WaitForSecondsRealtime(Random.Range(3.5f, 5f));
         }
     }
 
@@ -156,7 +158,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 550f;
+            aiScript.speed = 450f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -164,8 +166,9 @@ public class WaveManager : MonoBehaviour
 
             //Setting Monster Health and Resilience
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
-            healthScript.health = 160;
+            healthScript.health = 100;
             healthScript.baseDamageTaken = 35;
+            healthScript.bloodParticleSys = bloodParticleSys;
 
             //Setting Monster Sprite
             SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
