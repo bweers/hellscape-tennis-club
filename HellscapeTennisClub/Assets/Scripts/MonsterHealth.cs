@@ -7,6 +7,7 @@ public class MonsterHealth : MonoBehaviour
     public int health;
     public int baseDamageTaken;
     public float speedDamageModifier;
+    public GameObject bloodParticleSys;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -30,6 +31,13 @@ public class MonsterHealth : MonoBehaviour
     void Death()
     {
         //Insert VFX or other stuff here
+        GameObject particles = Instantiate(bloodParticleSys, gameObject.transform.position, Quaternion.identity);
+        particles.SetActive(true);
+
+        // ParticleSystem particles = gameObject.GetComponent<ParticleSystem>();
+        // particles.emission.enabled = true;
+
+
         Destroy(gameObject);
     }
 }
