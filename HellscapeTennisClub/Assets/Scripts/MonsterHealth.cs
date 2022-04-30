@@ -8,6 +8,13 @@ public class MonsterHealth : MonoBehaviour
     public int baseDamageTaken;
     public float speedDamageModifier;
     public GameObject bloodParticleSys;
+    public HealthBar healthBar;
+    public SimpleFlash flashEffect;
+
+    void Start()
+    {
+        healthBar.SetMaxHealth(health);
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -17,6 +24,10 @@ public class MonsterHealth : MonoBehaviour
             int ballSpeed = (int)col.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude;
 
             health -= baseDamageTaken * (int)(ballSpeed * speedDamageModifier) / 20; // 20 is a random number that just sort of feels right
+
+            healthBar.SetHealth(health);
+
+            flashEffect.Flash();
 
             Debug.Log(ballSpeed);
             Debug.Log(health);
