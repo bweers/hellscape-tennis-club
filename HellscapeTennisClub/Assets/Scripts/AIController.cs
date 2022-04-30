@@ -45,6 +45,7 @@ public class AIController : MonoBehaviour
 
     void Update()
     {
+        direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         monsterSprite.rotation = Quaternion.Euler(0f,0f, angle + 90);
     }
@@ -63,7 +64,7 @@ public class AIController : MonoBehaviour
             reachedEndOfPath = false;
         }
     
-        direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        
         Vector2 force = direction * speed * Time.deltaTime;
 
         rb.AddForce(force);
