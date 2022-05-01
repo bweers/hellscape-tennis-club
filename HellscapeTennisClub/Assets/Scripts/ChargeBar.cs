@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class ChargeBar : MonoBehaviour
 {
     public Slider slider;
+    public PlayerController chargeScript;
 
-    void ChargeValue()
+    void Start()
     {
-        PlayerController chargeScript = GetComponent<PlayerController>();
         slider.maxValue = chargeScript.maxCharge;
+    }
+
+    void Update()
+    {
         slider.value = chargeScript.charge;
     }
 }

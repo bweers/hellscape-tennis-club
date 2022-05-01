@@ -16,6 +16,9 @@ public class WaveManager : MonoBehaviour
     public Sprite medMonsterSprite;
     public Sprite heavyMonsterSprite;
 
+    public GameObject wavePrompt;
+    public PlayerController playerScript;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,28 +30,33 @@ public class WaveManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && roundStarted != true)
+        if (Input.GetKeyDown(KeyCode.E) && roundStarted != true && playerScript.movementAllowed)
         {
-            roundStarted = true;
+            wavePrompt.SetActive(false);
             WaveInitiation();
+            Debug.Log(waveNumber);
         }
 
         target = GameObject.Find("Player").transform;
 
         aliveMonsters = GameObject.FindGameObjectsWithTag("Monster").Length;
-        Debug.Log(aliveMonsters);
 
-        //ROUND END CONDITION AND EXECUTION
+        // ROUND END CONDITION AND EXECUTION
         if (aliveMonsters <= 0 && roundStarted == true)
         {
             waveNumber++;
+            wavePrompt.SetActive(true);
+            Debug.Log("End of Wave");
             roundStarted = false;
+            
         }
         
     }
 
-    void WaveInitiation()
+    public void WaveInitiation()
     {
+        roundStarted = true;
+        
         int numOfLight = 0;
         int numOfMed = 0;
         int numOfHeavy = 0;
@@ -56,8 +64,11 @@ public class WaveManager : MonoBehaviour
         if (waveNumber == 1)
         {
             Debug.Log("Wave 1 Started");
-            numOfLight = 12;
-            numOfMed = 1;
+            // numOfLight = 12;
+            // numOfMed = 1;
+            // numOfHeavy = 0;
+            numOfLight = 2;
+            numOfMed = 0;
             numOfHeavy = 0;
         }
         else if (waveNumber == 2)

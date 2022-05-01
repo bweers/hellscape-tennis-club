@@ -13,11 +13,14 @@ public class PlayerController : MonoBehaviour
   private Vector2 moveDirection;
   public int charge, maxCharge = 30;
   private bool leftMouseDown;
+  private PlayerAudioManager soundScript;
+  public bool movementAllowed = false;
  
     void Start()
     {
         StartCoroutine(ChargeTimer());
         GameObject ballSpawnPointObject = GameObject.Find("BallSpawnPoint");
+        soundScript = GameObject.Find("PlayerAudio").GetComponent<PlayerAudioManager>();
     }
     
    void Awake()
@@ -33,6 +36,8 @@ public class PlayerController : MonoBehaviour
 
    void FixedUpdate()
    {
+        if (movementAllowed)
+        {
         Move();
 
         // LookAtMouse
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
         //Mouse Button Held Down
         leftMouseDown = Input.GetMouseButton(0);
         timer += Time.deltaTime;
+        }
    }
 
    private IEnumerator ChargeTimer() {
@@ -95,5 +101,7 @@ public class PlayerController : MonoBehaviour
         Rigidbody2D rb = spawnedBall.GetComponent<Rigidbody2D>();
         Vector3 direction = ballSpawnPointObject.transform.TransformDirection(Vector3.right);
         rb.velocity = new Vector2( direction.x * charge, direction.y * charge );
+
+        soundScript.PlayAudioRacketHit(charge);
     }
 }
