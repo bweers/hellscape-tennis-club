@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 10;
+    public int maxHealth = 15;
     public int currentHealth;
     public HealthBar healthBar;
     public SimpleFlash flashEffect;
