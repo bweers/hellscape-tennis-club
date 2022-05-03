@@ -18,6 +18,7 @@ public class WaveManager : MonoBehaviour
 
     public GameObject wavePrompt;
     public PlayerController playerScript;
+    public GameObject confettiParticleSys;
 
 
     // Start is called before the first frame update
@@ -42,13 +43,12 @@ public class WaveManager : MonoBehaviour
         aliveMonsters = GameObject.FindGameObjectsWithTag("Monster").Length;
 
         // ROUND END CONDITION AND EXECUTION
-        if (aliveMonsters <= 0 && roundStarted == true)
+        if (aliveMonsters <= 0 && roundStarted == true && waveNumber < 4)
         {
             waveNumber++;
             wavePrompt.SetActive(true);
             Debug.Log("End of Wave");
             roundStarted = false;
-            
         }
         
     }
@@ -87,9 +87,12 @@ public class WaveManager : MonoBehaviour
             numOfHeavy = 4;
 
         }
-        else if (waveNumber >= 4)
+        else if (waveNumber == 4)
         {
             //ENTER WINNING FX OR OTHER SCRIPTS HERE
+            GameObject confetti = Instantiate(confettiParticleSys, new Vector3(-0.8f, 17f, 0f), Quaternion.identity);
+            wavePrompt.SetActive(false);
+            waveNumber++;
         }
         else
         {
@@ -121,7 +124,6 @@ public class WaveManager : MonoBehaviour
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
             healthScript.health = 50;
             healthScript.baseDamageTaken = 35;
-            healthScript.bloodParticleSys = bloodParticleSys;
 
             numOfLight--;
             yield return new WaitForSecondsRealtime(Random.Range(1.5f, 3.5f));
@@ -148,7 +150,6 @@ public class WaveManager : MonoBehaviour
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
             healthScript.health = 75;
             healthScript.baseDamageTaken = 35;
-            healthScript.bloodParticleSys = bloodParticleSys;
 
             //Setting Monster Sprite
             SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
@@ -179,7 +180,6 @@ public class WaveManager : MonoBehaviour
             MonsterHealth healthScript = monsterSpawn.GetComponent<MonsterHealth>();
             healthScript.health = 100;
             healthScript.baseDamageTaken = 35;
-            healthScript.bloodParticleSys = bloodParticleSys;
 
             //Setting Monster Sprite
             SpriteRenderer spriteRenderer = monsterSpawn.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
