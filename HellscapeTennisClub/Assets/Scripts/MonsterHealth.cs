@@ -10,6 +10,7 @@ public class MonsterHealth : MonoBehaviour
     public GameObject bloodParticleSys;
     public HealthBar healthBar;
     public SimpleFlash flashEffect;
+    public MonsterSound monsterAudio;
 
     void Start()
     {
@@ -28,6 +29,8 @@ public class MonsterHealth : MonoBehaviour
             healthBar.SetHealth(health);
 
             flashEffect.Flash();
+
+            monsterAudio.HitSound();
 
             Debug.Log(ballSpeed);
             Debug.Log(health);
