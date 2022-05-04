@@ -67,12 +67,15 @@ public class PlayerController : MonoBehaviour
                 }
                 else {
                     charge++;
+                    animator.SetBool("Is_Swinging", true);
                 }
                 // Debug.Log(charge);
              }
              else if (charge > 0)
              {
                 SpawnTennisBall();
+                animator.SetBool("Has_Swung", true);
+                animator.SetBool("Is_Swinging", false);
                 charge = 0;
              }
              else
@@ -98,12 +101,22 @@ public class PlayerController : MonoBehaviour
 
     void SpawnTennisBall()
     {
+        // animator.SetBool("Has_Swung", false);
+
         GameObject spawnedBall = Instantiate(tennisBallPrefab, ballSpawnPointObject.transform.position, Quaternion.identity);
         Rigidbody2D rb = spawnedBall.GetComponent<Rigidbody2D>();
         Vector3 direction = ballSpawnPointObject.transform.TransformDirection(Vector3.right);
         rb.velocity = new Vector2( direction.x * charge, direction.y * charge );
 
         soundScript.PlayAudioRacketHit(charge);
-        animator.SetBool("Is_Swinging", true);
+
+        StartCoroutine(ExecuteAfterTime(.1f));
     }
+
+    IEnumerator ExecuteAfterTime(float time)
+ {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Has_Swung", false);
+        
+ }
 }
