@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
   private bool leftMouseDown;
   private PlayerAudioManager soundScript;
   public bool movementAllowed = false;
+  public Animator animator;
  
     void Start()
     {
@@ -103,5 +104,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2( direction.x * charge, direction.y * charge );
 
         soundScript.PlayAudioRacketHit(charge);
+        animator.SetBool("Is_Swinging", true);
     }
 }
