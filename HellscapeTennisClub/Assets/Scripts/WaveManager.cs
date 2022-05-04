@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class WaveManager : MonoBehaviour
     public GameObject wavePrompt;
     public PlayerController playerScript;
     public GameObject confettiParticleSys;
+    public GameObject victoryPrompt;
 
 
     // Start is called before the first frame update
@@ -93,6 +95,11 @@ public class WaveManager : MonoBehaviour
             GameObject confetti = Instantiate(confettiParticleSys, new Vector3(-0.8f, 17f, 0f), Quaternion.identity);
             wavePrompt.SetActive(false);
             waveNumber++;
+            victoryPrompt.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
         else
         {
