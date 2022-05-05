@@ -127,7 +127,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 600f;
+            aiScript.speed = 550f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -153,7 +153,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 530f;
+            aiScript.speed = 400f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -183,7 +183,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 415f;
+            aiScript.speed = 300f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
