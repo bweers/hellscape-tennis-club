@@ -3072,6 +3072,7 @@ MonoBehaviour:
   maxCharge: 30
   movementAllowed: 0
   animator: {fileID: 1419609051}
+  waveScript: {fileID: 1320159737}
 --- !u!50 &1081895471
 Rigidbody2D:
   serializedVersion: 4
@@ -3366,6 +3367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb23d3699357fdc479f44c04da0ce781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveNumber: 1
   monsterPrefab: {fileID: 1325843041973827949, guid: 3acf3c57397fa8f4883235017be1e7f9, type: 3}
   bloodParticleSys: {fileID: 6629031358757645669, guid: 3b415b17ef3ba4c4ab9b93e4779e44cc, type: 3}
   medMonsterSprite: {fileID: 21300000, guid: 8c87f7ed463a4704c8016b38e1653143, type: 3}
@@ -3373,7 +3375,7 @@ MonoBehaviour:
   wavePrompt: {fileID: 1079295389}
   playerScript: {fileID: 1081895470}
   confettiParticleSys: {fileID: 358690959947892988, guid: ab9b4df2c7329174a958ff20a31c0432, type: 3}
-  victoryPrompt: {fileID: 0}
+  victoryPrompt: {fileID: 1869020245}
 --- !u!4 &1320159738
 Transform:
   m_ObjectHideFlags: 0
