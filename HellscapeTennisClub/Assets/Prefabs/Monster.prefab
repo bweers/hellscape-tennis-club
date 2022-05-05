@@ -336,6 +336,7 @@ MonoBehaviour:
   bloodParticleSys: {fileID: 6629031358757645669, guid: 3b415b17ef3ba4c4ab9b93e4779e44cc, type: 3}
   healthBar: {fileID: 3628713457461271069}
   flashEffect: {fileID: 1689100536397510580}
+  monsterAudio: {fileID: -5655024534204480739}
 --- !u!114 &1325843041973827950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5233,8 +5234,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterSound: {fileID: 0}
   audioClipArray:
-  - {fileID: 8300000, guid: f1e9a394498126242906a08ae9cd4ec7, type: 3}
-  - {fileID: 8300000, guid: 75d3812197f12a74e8b1de17bd21a91c, type: 3}
+  - {fileID: 8300000, guid: 30d064c860454824a839973b49540d0b, type: 3}
+  - {fileID: 8300000, guid: 21569239f6919ce439ee4f8d28e2dbb0, type: 3}
+  - {fileID: 8300000, guid: acde33fcfd5fda94b8012fc271e21e8a, type: 3}
 --- !u!82 &-6534925772843712863
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5247,7 +5249,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.308
   m_Pitch: 1
   Loop: 0
   Mute: 0

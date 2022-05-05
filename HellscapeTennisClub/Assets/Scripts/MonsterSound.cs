@@ -13,8 +13,7 @@ public class MonsterSound : MonoBehaviour
         monsterSound = GetComponent<AudioSource> ();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void HitSound()
     {
         monsterSound.clip=audioClipArray[Random.Range(0,audioClipArray.Length)];
         monsterSound.PlayOneShot(monsterSound.clip);
