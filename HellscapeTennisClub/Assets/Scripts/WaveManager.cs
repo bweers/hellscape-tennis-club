@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WaveManager : MonoBehaviour
 {
-    private int waveNumber = 1;
+    public int waveNumber = 1;
     private bool roundStarted = false;
     private Transform spawnPoint, spawnpoint1, spawnpoint2;
     private int aliveMonsters = 0;
@@ -48,9 +48,19 @@ public class WaveManager : MonoBehaviour
         if (aliveMonsters <= 0 && roundStarted == true && waveNumber < 4)
         {
             waveNumber++;
-            wavePrompt.SetActive(true);
-            Debug.Log("End of Wave");
-            roundStarted = false;
+
+            if (waveNumber < 4)
+            {
+                wavePrompt.SetActive(true);
+                Debug.Log("End of Wave");
+                roundStarted = false;
+            }
+            else if (waveNumber >= 4)
+            {
+                WaveInitiation();
+                victoryPrompt.SetActive(true);
+            }
+            
         }
         
     }
@@ -66,27 +76,27 @@ public class WaveManager : MonoBehaviour
         if (waveNumber == 1)
         {
             Debug.Log("Wave 1 Started");
-            // numOfLight = 12;
-            // numOfMed = 1;
-            // numOfHeavy = 0;
-            numOfLight = 2;
-            numOfMed = 0;
+            numOfLight = 8;
+            numOfMed = 1;
             numOfHeavy = 0;
+            // numOfLight = 1;
         }
         else if (waveNumber == 2)
         {
             Debug.Log("Wave 2 Started");
-            numOfLight = 20;
-            numOfMed = 9;
+            numOfLight = 13;
+            numOfMed = 5;
             numOfHeavy = 1;
+            // numOfLight = 1;
 
         }
         else if (waveNumber == 3)
         {
             Debug.Log("Wave 3 Started");
             numOfLight = 20;
-            numOfMed = 15;
-            numOfHeavy = 4;
+            numOfMed = 10;
+            numOfHeavy = 3;
+            // numOfLight = 1;
 
         }
         else if (waveNumber == 4)
@@ -96,10 +106,6 @@ public class WaveManager : MonoBehaviour
             wavePrompt.SetActive(false);
             waveNumber++;
             victoryPrompt.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
         }
         else
         {
@@ -121,7 +127,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 620f;
+            aiScript.speed = 600f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -147,7 +153,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 550f;
+            aiScript.speed = 530f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();
@@ -177,7 +183,7 @@ public class WaveManager : MonoBehaviour
             //Setting Monster target
             AIController aiScript = monsterSpawn.GetComponent<AIController>();
             aiScript.target = target;
-            aiScript.speed = 450f;
+            aiScript.speed = 415f;
 
             //Setting Monster Attack Damage
             MonsterDamage damageScript = monsterSpawn.GetComponent<MonsterDamage>();

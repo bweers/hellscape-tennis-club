@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine;
+using UnityEngine.SceneManagement;
  
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
   private PlayerAudioManager soundScript;
   public bool movementAllowed = false;
   public Animator animator;
+  public WaveManager waveScript;
  
     void Start()
     {
@@ -51,6 +53,11 @@ public class PlayerController : MonoBehaviour
         //Mouse Button Held Down
         leftMouseDown = Input.GetMouseButton(0);
         timer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Q) && waveScript.waveNumber >= 4)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
    }
 
@@ -101,8 +108,6 @@ public class PlayerController : MonoBehaviour
 
     void SpawnTennisBall()
     {
-        // animator.SetBool("Has_Swung", false);
-
         GameObject spawnedBall = Instantiate(tennisBallPrefab, ballSpawnPointObject.transform.position, Quaternion.identity);
         Rigidbody2D rb = spawnedBall.GetComponent<Rigidbody2D>();
         Vector3 direction = ballSpawnPointObject.transform.TransformDirection(Vector3.right);
